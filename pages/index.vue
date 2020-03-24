@@ -32,8 +32,26 @@
 import Logo from '~/components/Logo.vue'
 
 export default {
+  head: {
+    script: [ 
+      {
+        src: 'https://identity.netlify.com/v1/netlify-identity-widget.js'
+      }
+    ]
+  },
   components: {
     Logo
+  },
+  mounted: function () {
+    if (process.client && window && window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
   }
 }
 </script>

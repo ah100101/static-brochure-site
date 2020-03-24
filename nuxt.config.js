@@ -6,6 +6,9 @@ module.exports = {
   */
   head: {
     title: process.env.npm_package_name || '',
+    script: [
+      { src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
